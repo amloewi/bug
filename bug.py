@@ -3,9 +3,11 @@ import twilio
 import time
 
 urls = (
-    '/', 'home'
+    '/', 'home',
 )
 
+def nothin():
+    return 4
 
 def receive_message(message):
   pieces = parse_into_reminder(message)
