@@ -1,43 +1,71 @@
+import time # or DATETIME?
+import threading
+
 import web
-import twilio
-import time
+import model
+
+from twilio.rest import TwilioRestClient
+
+
+
+twilio_number = "+16507275900" # HIDE this somewhere?
 
 urls = (
-    '/', 'home',
+    '/', 'receive_message',
 )
 
-def nothin():
-    return 4
 
-def receive_message(message):
-  pieces = parse_into_reminder(message)
-  return insert_into_reminder_db(*pieces)
+# Used to see if anything needs to be sent
+SWEEP_FREQUENCY = 60 #seconds
+def sweep():
+    threading.Timer(SWEEP_FREQUENCY, sweep).start()
+    for reminder in reminder_db:
+        if reminder.send_at < time.time(): #or whatever
+            send_message(reminder)
+            reminder.send_at += reminder.interval
+# Starts the loop
+sweep()
+
+
 
 def send_message(message, recipient):
   twilio.send(message, recipient) ... whatever
 
+################# All from the twilio website, verbatim:
+# https://www.twilio.com/docs/api/rest/sending-messages#post
+#################
+    # Your Account Sid and Auth Token from twilio.com/user/account
+    account_sid = "AC8554a81ca9d1b4658093bfc4a0dc23d1"
+    auth_token  = "{{ auth_token }}"
+    client = TwilioRestClient(account_sid, auth_token)
 
-class Reminder:
-    def __init__(self, name, message, interval):
-        # The identifier. Used to shut a reminder off. "Did name"
-        self.name = name
-        # The reminder itself. Appears as "Name: message" in the SMS
-        self.message = message
-        # Entered in minutes, but time.time is in seconds.
-        self.interval = interval*60
-        self.send_at = time.time() + interval*60
-        # A feature for ... NUMBER of repeats?
+    # 0aea2768b7cb3dfe1d74c6a03e8a9dc7 ... ?
 
-    def
+    message = client.messages.create(
+        body=message,
+        to="+1"+recipient,
+        from_=twilio_number )
+    print message.sid
+################
+
+
+
+
+
+class receive_message(message):
+    text, number = parse_message(message)
+    if len(pieces) > 1:
+        activate_reminder(*pieces)
+    elif len(pieces)==1:# and pieces[0].split(" ")[0].lower()=='did':
+
+        inactivate_reminder(name)
+
+    else:
+        # it wasn't properly formatted
+        couldnt_parse(number)
+
 
 app = web.application(urls, globals())
 
 if __name__ == "__main__":
     app.run()
-
-
-  # on a loop ... every 60? seconds, check.
-  for reminder in reminder_db:
-    if reminder.send_at < time.time(): #or whatever
-      send_message(reminder)
-      reminder.send_at += reminder.interval
