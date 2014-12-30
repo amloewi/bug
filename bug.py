@@ -65,7 +65,7 @@ class receive_message:
         return render.home()
 
     def POST(args):
-        print "message: ", [i for i in args]
+        print "message: ", web.ctx.env
 
         # text, number, kind = parse_message(message)
         # if kind=="new":
