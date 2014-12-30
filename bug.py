@@ -57,16 +57,17 @@ def couldnt_parse():
     pass
 
 
-
+#wsgi.input: <webd.wsgiserver.KnonwnLengthRFile object>
 
 class receive_message:
 
-    def GET(args):
+    def GET(self):
         return render.home()
 
     def POST(self):
-        length = int(self.headers["Content-Length"])
-        print("Data: " + str(self.rfile.read(length), "utf-8"))
+        print web.ctx.env['wsgi.input'].read()
+        #length = int(self.headers["Content-Length"])
+        #print("Data: " + str(self.rfile.read(length), "utf-8"))
 
         #print "message: ", web.ctx.query
 
