@@ -59,7 +59,7 @@ def couldnt_parse():
 
 
 
-class receive_message(message):
+class receive_message:
 
     def GET(args):
         return render.home()
