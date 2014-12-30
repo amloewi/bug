@@ -19,16 +19,16 @@ render = web.template.render('templates')
 
 
 
-# Used to see if anything needs to be sent
-SWEEP_FREQUENCY = 60 #seconds
-def sweep():
-    threading.Timer(SWEEP_FREQUENCY, sweep).start()
-    for reminder in reminder_db:
-        if reminder.send_at < time.time(): #or whatever
-            send_message(reminder)
-            reminder.send_at += reminder.interval
-# Starts the loop
-sweep()
+# # Used to see if anything needs to be sent
+# SWEEP_FREQUENCY = 60 #seconds
+# def sweep():
+#     threading.Timer(SWEEP_FREQUENCY, sweep).start()
+#     for reminder in reminder_db:
+#         if reminder.send_at < time.time(): #or whatever
+#             send_message(reminder)
+#             reminder.send_at += reminder.interval
+# # Starts the loop
+# sweep()
 
 
 def send_message(message, number):
