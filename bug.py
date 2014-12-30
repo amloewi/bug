@@ -1,5 +1,6 @@
 import time # or DATETIME?
 import threading
+import cgi
 
 import web
 import model
@@ -65,7 +66,23 @@ class receive_message:
         return render.home()
 
     def POST(self):
-        print web.ctx.env['wsgi.input'].read()
+        # WHY IS THIS SO NUTS?
+        # This will all get folded into parse_message
+        request = cgi.FieldStorage()
+        print request['Body']
+        print request['FromCity']
+
+        # raw_request = web.ctx.env['wsgi.input'].read()
+        # request
+        # text = cgi.FieldStorage.getvalue(request, 'Body')
+        # number =
+        # print cgi.FieldStorage.getvalue("""ToCountry=US&ToState=CA&SmsMessageSid=SMf3893b4c2ccf025cd4b6efe741431e8d
+        # &NumMedia=0&ToCity=&FromZip=94304&SmsSid=SMf3893b4c2ccf025cd4b6efe741431e8d
+        # &FromState=CA&SmsStatus=received&FromCity=PALO+ALTO&Body=Hello+bug&FromCountry=US
+        # &To=%2B16507275900&ToZip=&MessageSid=SMf3893b4c2ccf025cd4b6efe741431e8d
+        # &AccountSid=AC8554a81ca9d1b4658093bfc4a0dc23d1
+        # &From=%2B16503915900&ApiVersion=2010-04-01"""
+        # , 'Body')
         #length = int(self.headers["Content-Length"])
         #print("Data: " + str(self.rfile.read(length), "utf-8"))
 
