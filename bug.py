@@ -65,7 +65,7 @@ class receive_message:
         return render.home()
 
     def POST(args):
-        print "message: ", message
+        print "message: ", args
 
         # text, number, kind = parse_message(message)
         # if kind=="new":
