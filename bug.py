@@ -64,8 +64,11 @@ class receive_message:
     def GET(args):
         return render.home()
 
-    def POST(args):
-        print "message: ", web.ctx.query
+    def POST(self):
+        length = int(self.headers["Content-Length"])
+        print("Data: " + str(self.rfile.read(length), "utf-8"))
+
+        #print "message: ", web.ctx.query
 
         # text, number, kind = parse_message(message)
         # if kind=="new":
