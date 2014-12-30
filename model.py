@@ -1,3 +1,3 @@
 import web
 
-db = web.database()
+#db = web.database()
