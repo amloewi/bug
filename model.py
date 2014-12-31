@@ -41,7 +41,7 @@ def inactivate_reminder(name):
     r = db.where('reminders', name=name)[0]
     r['repeats_left']=0
     r['time_done'] = int(time.time())
-    db.insert('reminders',r)
+    db.insert('reminders', **r)
 
 def get_active():
     active = list(db.query("SELECT * FROM reminders WHERE repeats_left!=0"))
@@ -49,7 +49,7 @@ def get_active():
 
 
 def reinsert(reminder):
-    db.insert('reminders', reminder)
+    db.insert('reminders', **reminder)
 
 
 # --

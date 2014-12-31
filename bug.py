@@ -30,7 +30,7 @@ def send_message(reminder):
     # 0aea2768b7cb3dfe1d74c6a03e8a9dc7 ... ?
 
     message = client.messages.create(
-        body=reminder.name + ": "+ reminder.message,
+        body=reminder.name.strip() + ": "+ reminder.message.strip(),
         to=reminder.sender_number,
         from_=twilio_number)
 
