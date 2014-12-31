@@ -21,6 +21,20 @@ render = web.template.render('templates')
 
 
 
+def send_message(reminder):
+
+    account_sid = "AC8554a81ca9d1b4658093bfc4a0dc23d1"
+    auth_token  = "0aea2768b7cb3dfe1d74c6a03e8a9dc7" #"{{ auth_token }}"
+    client = TwilioRestClient(account_sid, auth_token)
+
+    # 0aea2768b7cb3dfe1d74c6a03e8a9dc7 ... ?
+
+    message = client.messages.create(
+        body=reminder.name + ": "+ reminder.message,
+        to=reminder.sender_number,
+        from_=twilio_number)
+
+
 # Used to see if anything needs to be sent
 SWEEP_FREQUENCY = 60 #seconds
 def sweep():
@@ -39,18 +53,6 @@ def sweep():
 sweep()
 
 
-def send_message(reminder):
-
-    account_sid = "AC8554a81ca9d1b4658093bfc4a0dc23d1"
-    auth_token  = "0aea2768b7cb3dfe1d74c6a03e8a9dc7" #"{{ auth_token }}"
-    client = TwilioRestClient(account_sid, auth_token)
-
-    # 0aea2768b7cb3dfe1d74c6a03e8a9dc7 ... ?
-
-    message = client.messages.create(
-        body=reminder.name + ": "+ reminder.message,
-        to=reminder.sender_number,
-        from_=twilio_number)
 
 # def parse_message(message):
 #     pass
