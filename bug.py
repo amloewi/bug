@@ -32,6 +32,8 @@ def sweep():
             # GOTTA PUT THIS BACK IN THE DB
             reminder.send_at += reminder.interval
             reminder.repeated += 1
+            if reminder.repeats_left > 0:
+                reminder.repeats_left -= 1
             model.reinsert(reminder)
 # Starts the loop
 sweep()
@@ -98,7 +100,8 @@ class receive_message:
             pieces = [p.strip() for p in pieces]
             pieces[2] = int(pieces[2]) #it's all strings right now
             if num_args==3:
-                pieces.append(-1)
+                # The default 'number of repeats' argument.
+                pieces.append(5)
             else:
                 # Gotta cast the repeat argument, IF it's there.
                 pieces[-1] = int(pieces[-1])

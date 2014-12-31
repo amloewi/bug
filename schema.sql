@@ -12,7 +12,7 @@ create table reminders(
   -- The time (in seconds since 1970) at which to send the next reminder
   send_at bigint,
   -- The number of times the message has been sent so far
-  repeated int,
+  times_sent int,
   -- The number of times the message will be repeated in the future
   -- Set to '-1' for indefinitely repeating
   -- COULD be used as 'if repeats_left != 0' for 'active' ... speed?
