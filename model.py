@@ -49,7 +49,7 @@ def get_active():
 
 
 def reinsert(reminder):
-    db.insert('reminders', **reminder)
+    db.update('reminders', where"id=$id", vars=reminder, **reminder)
 
 
 # --
