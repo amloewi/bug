@@ -84,7 +84,7 @@ class receive_message:
         num_args = len(msg_args)
         if num_args==1:
             #kind = "inactivate"
-            did, name = msg_args.split(" ")[0:2] # Ignores anything after.
+            did, name = msg_args[0].split(" ")[0:2] # Ignores anything after.
 
             if did.lower() == "did":
                 model.inactivate_reminder(name)
@@ -94,7 +94,7 @@ class receive_message:
 
         # name, msg, interval (, repeats)
         elif num_args==3 or num_args==4:
-            pieces = msg_args.split(",")
+            pieces = text.split(",")
             pieces = [p.strip() for p in pieces]
             pieces[2] = int(pieces[2]) #it's all strings right now
             if num_args==3:
