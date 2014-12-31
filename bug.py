@@ -10,6 +10,7 @@ from twilio.rest import TwilioRestClient
 
 
 twilio_number = "+16507275900" # HIDE this somewhere?
+my_number = "+16503915900"
 
 urls = (
     # The twilio request URL needs to be set to the homepage
@@ -20,45 +21,48 @@ render = web.template.render('templates')
 
 
 
-# # Used to see if anything needs to be sent
-# SWEEP_FREQUENCY = 60 #seconds
-# def sweep():
-#     threading.Timer(SWEEP_FREQUENCY, sweep).start()
-#     for reminder in reminder_db:
-#         if reminder.send_at < time.time(): #or whatever
-#             send_message(reminder)
-#             reminder.send_at += reminder.interval
-# # Starts the loop
-# sweep()
+# Used to see if anything needs to be sent
+SWEEP_FREQUENCY = 60 #seconds
+def sweep():
+    threading.Timer(SWEEP_FREQUENCY, sweep).start()
+    now = time.time()
+    for reminder in model.get_active():
+        if now > reminder.send_at: #or whatever
+            send_message(reminder)
+            # GOTTA PUT THIS BACK IN THE DB
+            reminder.send_at += reminder.interval
+            reminder.repeated += 1
+            model.reinsert(reminder)
+# Starts the loop
+sweep()
 
 
-def send_message(message, number):
+def send_message(reminder):
 
     account_sid = "AC8554a81ca9d1b4658093bfc4a0dc23d1"
-    auth_token  = "{{ auth_token }}"
+    auth_token  = "0aea2768b7cb3dfe1d74c6a03e8a9dc7" #"{{ auth_token }}"
     client = TwilioRestClient(account_sid, auth_token)
 
     # 0aea2768b7cb3dfe1d74c6a03e8a9dc7 ... ?
 
     message = client.messages.create(
-        body=message,
-        to="+1"+number,
-        from_=twilio_number )
+        body=reminder.name + ": "+ reminder.message,
+        to=reminder.sender_number,
+        from_=twilio_number)
 
-def parse_message(message):
-    pass
+# def parse_message(message):
+#     pass
+#
+# def new_reminder(name, msg, interval, repeats):
+#     pass
+#
+# def inactivate_reminder(name):
+#     pass
+#
+# def couldnt_parse():
+#     pass
 
-def new_reminder():
-    pass
 
-def inactivate_reminder():
-    pass
-
-def couldnt_parse():
-    pass
-
-
-#wsgi.input: <webd.wsgiserver.KnonwnLengthRFile object>
 
 class receive_message:
 
@@ -68,25 +72,48 @@ class receive_message:
     def POST(self):
         # WHY IS THIS SO NUTS?
         # This will all get folded into parse_message
-        request = cgi.FieldStorage()
-        print request['Body']
-        print request['FromCity']
+        raw_string = web.ctx.env['wsgi.input'].read()
+        # Function's a little weird. Instead of returning str:str, it gives
+        # str:[str], i.e. 'Body': ['Hello Bug']
+        request = cgi.parse_qs(raw_string)
+        text = request['Body'][0]
 
-        # raw_request = web.ctx.env['wsgi.input'].read()
-        # request
-        # text = cgi.FieldStorage.getvalue(request, 'Body')
-        # number =
-        # print cgi.FieldStorage.getvalue("""ToCountry=US&ToState=CA&SmsMessageSid=SMf3893b4c2ccf025cd4b6efe741431e8d
+        print 'text: ', text
+
+        msg_args = text.split(",")
+        if len(msg_args)==1:
+            #kind = "inactivate"
+            did, name = msg_args.split(" ")[0:2] # Ignores anything after.
+
+            if did.lower() == "did":
+                model.inactivate_reminder(name)
+            else:
+                # improperly formatted -- say so.
+                pass
+
+        # name, msg, interval (, repeats)
+        elif len(msg_args)>=3:
+            pieces = msg_args.split(",")
+            pieces = [p.strip() for p in pieces]
+            pieces[2] = int(pieces[2]) #it's all strings right now
+            if len(pieces)==3:
+                pieces.append(-1)
+            pieces.append(my_number) #Whatever, fuck it.
+            model.new_reminder(*pieces)
+
+        else:
+            # Incorrect number of arguments -- tell sender.
+            pass
+
+
+
+        # print cgi.parse_qs("""ToCountry=US&ToState=CA&SmsMessageSid=SMf3893b4c2ccf025cd4b6efe741431e8d
         # &NumMedia=0&ToCity=&FromZip=94304&SmsSid=SMf3893b4c2ccf025cd4b6efe741431e8d
         # &FromState=CA&SmsStatus=received&FromCity=PALO+ALTO&Body=Hello+bug&FromCountry=US
         # &To=%2B16507275900&ToZip=&MessageSid=SMf3893b4c2ccf025cd4b6efe741431e8d
         # &AccountSid=AC8554a81ca9d1b4658093bfc4a0dc23d1
         # &From=%2B16503915900&ApiVersion=2010-04-01"""
-        # , 'Body')
-        #length = int(self.headers["Content-Length"])
-        #print("Data: " + str(self.rfile.read(length), "utf-8"))
-
-        #print "message: ", web.ctx.query
+        # )
 
         # text, number, kind = parse_message(message)
         # if kind=="new":

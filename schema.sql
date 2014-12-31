@@ -3,6 +3,8 @@ create table reminders(
   -- A SHORT code used to identify the reminder, and turn it off.
   -- 'Did *name*' will stop the remaining messages.
   name char(20),
+  -- The phone number of the sender, as a string
+  sender_number char(12), -- "+1 503 274 7031" (without spaces) is twelve chars
   -- The message itself, sent to the user in the reminder text.
   message char(200),
   -- The number of seconds in between reminders
@@ -17,6 +19,6 @@ create table reminders(
   repeats_left smallint,
   -- Whether or not there are repeats left
   -- active boolean,
-  time_set timestamp,
-  time_done timestamp
+  time_set bigint,
+  time_done bigint
 );
