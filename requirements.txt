@@ -1,4 +1,5 @@
 httplib2==0.9
+psycopg2==2.5.4
 six==1.8.0
 twilio==3.6.14
 web.py==0.37
