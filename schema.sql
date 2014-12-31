@@ -1,5 +1,6 @@
 --
 create table reminders(
+  id serial primary key,
   -- A SHORT code used to identify the reminder, and turn it off.
   -- 'Did *name*' will stop the remaining messages.
   name char(20),
