@@ -31,7 +31,7 @@ def sweep():
             send_message(reminder)
             # GOTTA PUT THIS BACK IN THE DB
             reminder.send_at += reminder.interval
-            reminder.repeated += 1
+            reminder.times_sent += 1
             if reminder.repeats_left > 0:
                 reminder.repeats_left -= 1
             model.reinsert(reminder)
