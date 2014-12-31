@@ -81,7 +81,8 @@ class receive_message:
         print 'text: ', text
 
         msg_args = text.split(",")
-        if len(msg_args)==1:
+        num_args = len(msg_args)
+        if num_args==1:
             #kind = "inactivate"
             did, name = msg_args.split(" ")[0:2] # Ignores anything after.
 
@@ -92,12 +93,15 @@ class receive_message:
                 pass
 
         # name, msg, interval (, repeats)
-        elif len(msg_args)>=3:
+        elif num_args==3 or num_args==4:
             pieces = msg_args.split(",")
             pieces = [p.strip() for p in pieces]
             pieces[2] = int(pieces[2]) #it's all strings right now
-            if len(pieces)==3:
+            if num_args==3:
                 pieces.append(-1)
+            else:
+                # Gotta cast the repeat argument, IF it's there.
+                pieces[-1] = int(pieces[-1])
             pieces.append(my_number) #Whatever, fuck it.
             model.new_reminder(*pieces)
 
