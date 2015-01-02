@@ -36,7 +36,7 @@ def send_message(reminder):
 
 
 # Used to see if anything needs to be sent
-SWEEP_FREQUENCY = 60 #seconds
+SWEEP_FREQUENCY = 5*60 #seconds
 def sweep():
     threading.Timer(SWEEP_FREQUENCY, sweep).start()
     now = time.time()
@@ -49,6 +49,8 @@ def sweep():
             if reminder.repeats_left > 0:
                 reminder.repeats_left -= 1
             model.reinsert(reminder)
+    # Visit itself, to keep it alive. Otherwise, it sleeps after like an hour.
+    raise web.seeother('http://sikeda.herokuapp.com')
 # Starts the loop
 sweep()
 
@@ -107,7 +109,7 @@ class receive_message:
             else:
                 # Gotta cast the repeat argument, IF it's there.
                 pieces[-1] = int(pieces[-1])
-            pieces.append(my_number) #Whatever, fuck it.
+            pieces.append(request['From'][0])
             model.new_reminder(*pieces)
 
         else:
