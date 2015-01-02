@@ -17,6 +17,8 @@ urls = (
     '/', 'receive_message',
 )
 
+app = web.application(urls, globals())
+
 render = web.template.render('templates')
 
 
@@ -41,6 +43,8 @@ def sweep():
     threading.Timer(SWEEP_FREQUENCY, sweep).start()
     now = time.time()
     for reminder in model.get_active():
+        # I THINK this will just ping the site IFF there are active reminders.
+        app.request('/', method='GET')
         if now > reminder.send_at: #or whatever
             send_message(reminder)
             # GOTTA PUT THIS BACK IN THE DB
@@ -137,8 +141,6 @@ class receive_message:
         #     # it wasn't properly formatted
         #     couldnt_parse(number)
 
-
-app = web.application(urls, globals())
 
 if __name__ == "__main__":
     app.run()
