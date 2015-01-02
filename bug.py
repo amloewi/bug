@@ -1,4 +1,4 @@
-import time # or DATETIME?
+import time 
 import threading
 import cgi
 
@@ -49,8 +49,7 @@ def sweep():
             if reminder.repeats_left > 0:
                 reminder.repeats_left -= 1
             model.reinsert(reminder)
-    # Visit itself, to keep it alive. Otherwise, it sleeps after like an hour.
-    raise web.seeother('/')
+
 # Starts the loop
 sweep()
 
@@ -73,6 +72,9 @@ sweep()
 class receive_message:
 
     def GET(self):
+        # Visit itself, to keep it alive. Otherwise, it sleeps after like an hour.
+        time.sleep(15*60)
+        raise web.seeother('/')
         return render.home()
 
     def POST(self):
