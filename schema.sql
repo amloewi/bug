@@ -23,3 +23,5 @@ create table reminders(
   time_set bigint,
   time_done bigint
 );
+
+create table old_reminders () inherits (reminders);
