@@ -50,7 +50,7 @@ def sweep():
                 reminder.repeats_left -= 1
             model.reinsert(reminder)
     # Visit itself, to keep it alive. Otherwise, it sleeps after like an hour.
-    raise web.seeother('http://sikeda.herokuapp.com')
+    raise web.seeother('/')
 # Starts the loop
 sweep()
 
