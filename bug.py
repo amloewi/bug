@@ -79,8 +79,8 @@ class receive_message:
     def GET(self):
         return render.home()
         # Visit itself, to keep it alive. Otherwise, it sleeps after like an hour.
-        time.sleep(15*60)
-        raise web.seeother('/')
+        # time.sleep(15*60)
+        # raise web.seeother('/')
 
     def POST(self):
         # WHY IS THIS SO NUTS?
