@@ -44,7 +44,7 @@ def sweep():
     now = time.time()
     for reminder in model.get_active():
         # I THINK this will just ping the site IFF there are active reminders.
-        response = app.request('/', method='GET')
+        response = app.request('http://sikeda.herokuapp.com', method='GET')
         print 'response: ', response
         if now > reminder.send_at: #or whatever
             send_message(reminder)
