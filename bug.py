@@ -38,13 +38,14 @@ def send_message(reminder):
 
 
 # Used to see if anything needs to be sent
-SWEEP_FREQUENCY = 5*60 #seconds
+SWEEP_FREQUENCY = 60 #seconds
 def sweep():
     threading.Timer(SWEEP_FREQUENCY, sweep).start()
     now = time.time()
     for reminder in model.get_active():
         # I THINK this will just ping the site IFF there are active reminders.
-        app.request('/', method='GET')
+        response = app.request('/', method='GET')
+        print 'response: ', response
         if now > reminder.send_at: #or whatever
             send_message(reminder)
             # GOTTA PUT THIS BACK IN THE DB
@@ -90,7 +91,7 @@ class receive_message:
         request = cgi.parse_qs(raw_string)
         text = request['Body'][0]
 
-        print 'text: ', text
+        print 'request: ', request
 
         msg_args = text.split(",")
         num_args = len(msg_args)
