@@ -39,15 +39,16 @@ def send_message(reminder):
 
 
 # Used to see if anything needs to be sent
-SWEEP_FREQUENCY = 60 #seconds
+SWEEP_FREQUENCY = 5*60 #seconds
 def sweep():
     threading.Timer(SWEEP_FREQUENCY, sweep).start()
     now = time.time()
-    for reminder in model.get_active():
-        # I THINK this will just ping the site IFF there are active reminders.
-        response = urllib2.urlopen('http://sikeda.herokuapp.com')
-        print 'response: ', response
-        if now > reminder.send_at: #or whatever
+    reminders = model.get_active()
+    if reminders:
+        # This will just ping the site IFF there are active reminders. Keeps it awake for > 1hr.
+        urllib2.urlopen('http://sikeda.herokuapp.com')        
+    for reminder in reminders:
+        if now > reminder.send_at:
             send_message(reminder)
             # GOTTA PUT THIS BACK IN THE DB
             reminder.send_at += reminder.interval
@@ -79,9 +80,6 @@ class receive_message:
 
     def GET(self):
         return render.home()
-        # Visit itself, to keep it alive. Otherwise, it sleeps after like an hour.
-        # time.sleep(15*60)
-        # raise web.seeother('/')
 
     def POST(self):
         # WHY IS THIS SO NUTS?
@@ -91,8 +89,6 @@ class receive_message:
         # str:[str], i.e. 'Body': ['Hello Bug']
         request = cgi.parse_qs(raw_string)
         text = request['Body'][0]
-
-        print 'request: ', request
 
         msg_args = text.split(",")
         num_args = len(msg_args)
