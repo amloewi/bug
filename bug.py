@@ -1,5 +1,5 @@
 import time
-import threading import Timer
+from threading import Timer
 from cgi import parse_qs
 from urllib2 import urlopen
 
