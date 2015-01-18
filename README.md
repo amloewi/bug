@@ -4,6 +4,7 @@ bug
 An insistent SMS-based reminder service.
 
 The input string for bug is
+
 \<name of job\>, \<reminder message\>, [, \<number of minutes between reminders\> [, \<times message will be sent\> ]]
 With defaults on the last two, optional parameters being 30 minutes between reminders, and 5 repeated messages.
 
