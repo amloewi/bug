@@ -1,1 +1,1 @@
-web: python bug.py 0.0.0.0:$PORT
+web: python bug.py 0.0.0.0:$PORT --noreload
