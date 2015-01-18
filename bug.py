@@ -46,7 +46,8 @@ def sweep():
     reminders = model.get_active()
     if reminders:
         # This will just ping the site IFF there are active reminders. Keeps it awake for > 1hr.
-        urlopen('http://sikeda.herokuapp.com')
+        #urlopen('http://sikeda.herokuapp.com')
+        pass
     for reminder in reminders:
         if now > reminder.send_at:
             send_message(reminder)
