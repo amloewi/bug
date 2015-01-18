@@ -1,15 +1,6 @@
 import web
 import time
 
-#db = web.database()
-# Copied from reviewerator
-# db = web.database(dbn='postgres',
-# 					  db='dk43q2hjo7pai',
-# 	 				  host='ec2-23-23-81-171.compute-1.amazonaws.com',
-# 					  port=5432,
-# 					  user='gmjfeaokrqybxu',
-# 					  pw='rWV1ucM1sW-BMFTz4LNTMQsTVW',
-# 					  sslmode='require')
 #Connection URL:
 #    postgres://saacaqioxidlzo:uTBA7xiv_GqC99oNQCf4R5FzFo@ec2-54-83-23-169.compute-1.amazonaws.com:5432/dqskbvn58g0hu
 db = web.database(dbn='postgres',
@@ -21,7 +12,7 @@ db = web.database(dbn='postgres',
                     sslmode='require')
 
 
-def new_reminder(name, msg, interval, repeats, number):
+def new_reminder(number, name, msg, interval, repeats):
     interval_in_seconds = interval*60
     now = int(time.time())
     db.insert('reminders',
