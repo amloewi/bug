@@ -195,24 +195,15 @@ class receive_message:
             pass
 
 
-
-        # print cgi.parse_qs("""ToCountry=US&ToState=CA&SmsMessageSid=SMf3893b4c2ccf025cd4b6efe741431e8d
-        # &NumMedia=0&ToCity=&FromZip=94304&SmsSid=SMf3893b4c2ccf025cd4b6efe741431e8d
-        # &FromState=CA&SmsStatus=received&FromCity=PALO+ALTO&Body=Hello+bug&FromCountry=US
-        # &To=%2B16507275900&ToZip=&MessageSid=SMf3893b4c2ccf025cd4b6efe741431e8d
-        # &AccountSid=AC8554a81ca9d1b4658093bfc4a0dc23d1
-        # &From=%2B16503915900&ApiVersion=2010-04-01"""
-        # )
-
-        # text, number, kind = parse_message(message)
-        # if kind=="new":
-        #     new_reminder(text)
-        # elif kind=="inactivate":
-        #     inactivate_reminder(text)
-        # else: # kind=="wrong"
-        #     # it wasn't properly formatted
-        #     couldnt_parse(number)
-
-
 if __name__ == "__main__":
     app.run()
+
+
+  # This is just an example, for reference, of the format of web request.
+    # print cgi.parse_qs("""ToCountry=US&ToState=CA&SmsMessageSid=SMf3893b4c2ccf025cd4b6efe741431e8d
+    # &NumMedia=0&ToCity=&FromZip=94304&SmsSid=SMf3893b4c2ccf025cd4b6efe741431e8d
+    # &FromState=CA&SmsStatus=received&FromCity=PALO+ALTO&Body=Hello+bug&FromCountry=US
+    # &To=%2B16507275900&ToZip=&MessageSid=SMf3893b4c2ccf025cd4b6efe741431e8d
+    # &AccountSid=AC8554a81ca9d1b4658093bfc4a0dc23d1
+    # &From=%2B16503915900&ApiVersion=2010-04-01"""
+    # )
