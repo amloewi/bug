@@ -1,3 +1,124 @@
+<!-- Just the markdown from README, converted via web app to html. -->
+
 <html>
-  Hello!
+  <head>
+    <!-- Github ribbon -->
+    <a href="https://github.com/amloewi/bug">
+      <img
+        style="position: absolute; top: 0; right: 0; border: 0;"
+        src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67"
+        alt="Fork me on GitHub"
+        data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
+      >
+    </a>
+
+    <!-- Bootstrap -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <h1> bug </h1>
+
+      <h4> An insistent text message reminder service </h4>
+
+      <div class="row">
+        <div class="col-md-7">
+          Alarms only go off once. When they do go off, you're busy, and an hour after the
+          alarm, the thing you needed to do still needs to be done, but you've forgotten about it
+          again. Especially if you're sorta avoiding it on purpose ... but you can't let me keep doing that!
+
+          <p><p>
+          <b>bug</b> takes the more intuitive, and direct approach. It reminds you of something, repeatedly, until you do it.
+          Like a person would. Like you wish you could do for yourself. Because you know that's how things get done.
+
+          <p><p>
+          The interface is just as simple. Send a text to the bug number in the format:
+
+          <h3> name, message [, interval=30 [, repeats=5 ]] </h3>
+
+          <br>
+          Where <b>name</b> is the name of the reminder (which in the future, you'll be able to  use to
+          cancel the reminders once you've done the thing), <b>message</b> is the message you'll get
+          when the reminder is sent, <b>interval</b> is the number of minutes in between reminders (which
+          defaults to 30, if you don't enter anything), and <b>repeats</b> is the number of times the reminder will
+          be sent (which defaults to 5, if you don't enter anything).
+          <p><p>
+
+          <h3> Examples </h3>
+
+          <b>Groceries, Buy groceries for tomorrow!, 60, 3</b>
+          <br>
+          This will send the message 3 times, 60 minutes apart.
+          <p><p>
+
+          <b>Book, Return the library book, 20</b>
+          <br>
+          This will send the message 5 times (because that's the "repeats" default), 20 minutes apart
+          <p><p>
+
+          <b>Gym, Go the gym before dinner at 8</b>
+          <br>
+          This will send the message 5 times (by default) 30 minutes apart (by default).
+
+        </div>
+        <div class="col-md-3 col-md-offset-1">
+          <b>bug</b> is in the middle of development, so things are going to change, and also not always work.
+          In particular, at the moment, it's finicky about input format, so be careful -- and don't put
+          commas in your message!
+          But if you'd like to give it a try, email me at <b>aloewi</b> ☃ <b>cmu.edu</b>
+          and I'll send you the number it uses. Oh, and call your mom.
+          <p>
+          <p class="text-right">
+            -Alex
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+
 </html>
+
+<!--
+<html>
+  <h1>bug</h1>
+
+  <p>An insistent SMS-based reminder service.</p>
+
+  <p>The input string for bug is:</p>
+
+  <p><strong>name of job">>, <message>, [, <minutes between reminders> [, <times message will be sent> ]]</strong></p>
+
+  <p>With defaults on the last two, optional parameters being 30 minutes between reminders, and 5 repeated messages.</p>
+
+  <p><strong>Ex:</strong> <em>Food, Go buy food!, 30, 4</em> # The job named "Food" will send you the message "Go buy food! 4 times, 30 minutes apart.</p>
+
+  <p><strong>Ex:</strong> <em>Call, Call Shelly</em> # The job named "Call" will send you the message "Call Shelly" 5 times, 30 minutes apart, because those are the defaults on the paramaters.</p>
+
+  <p>The name of the job is meant as an identifier by which the job can be cancelled, with 'Did <job>' but that feature has not yet been implemented.</p>
+
+</html>
+-->

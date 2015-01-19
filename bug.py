@@ -152,7 +152,6 @@ def inactivate_reminder(args):
 def add_defaults(args, num_args):
   """ Adds the default arguments for the interval and repeats, if necessary.
 
-
   """
 
   msg_args = copy.copy(args)
@@ -186,7 +185,7 @@ class receive_message:
         # sender, name, msg [, interval [, repeats]]
         elif 2 < num_args <= 5:
 
-            msg_args = add_defauts(msg_args)
+            msg_args = add_defauts(msg_args, num_args)
 
             model.new_reminder(*msg_args)
 
