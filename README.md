@@ -8,7 +8,7 @@ The input string for bug is:
 ** \<message\>, [, \<minutes between reminders=30\> [, \<times message will be sent=5\> ]] **
 
 Meaning the last two parameters are optional, and have defaults of 30 minutes between reminders, and 5 repeated messages. The parameters need to be separated by spaces, and if you have a number at the end of your message,
-you need to include punctuation to show it's not a parameter. E.g. **Dinner at 8** will think '8' is the interval, but **Dinner at 8.** with the period will work fine.
+you need to include punctuation to show it's not a parameter. E.g. "Dinner at 8" will think '8' is the interval, but "Dinner at 8." with the period will work fine.
 
 **Ex:** *Go buy food!, 60, 4* # You will get the message "Go buy food! 4 times, 60 minutes apart.
 
