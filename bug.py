@@ -27,7 +27,7 @@ urls = (
 ####################
 
 # The twilio number that receives (and sends) the texts
-twilio_number = "+16507275900" # HIDE this somewhere?
+twilio_number = os.environ['TWILIO_NUMBER']"+16507275900" # HIDE this somewhere?
 # Default number of minutes in between reminders
 INTERVAL_DEFAULT = 30
 # Default number of times a message is repeated before inactivation
@@ -55,7 +55,7 @@ render = web.template.render('templates')
 def send_message(to, message):
 
     account_sid = "AC8554a81ca9d1b4658093bfc4a0dc23d1"
-    auth_token  = "0aea2768b7cb3dfe1d74c6a03e8a9dc7" #"{{ auth_token }}"
+    auth_token  = os.environ['TWILIO_AUTH_TOKEN'] #"0aea2768b7cb3dfe1d74c6a03e8a9dc7" #"{{ auth_token }}"
     client = TwilioRestClient(account_sid, auth_token)
 
     message = client.messages.create(
