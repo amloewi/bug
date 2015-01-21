@@ -75,7 +75,7 @@ def sweep():
         # This has caused trouble before, but I don't know why.
         try:
           urllib2.urlopen('http://sikeda.herokuapp.com')
-        except Exception e:
+        except Exception, e:
           print e
 
     for reminder in reminders:
