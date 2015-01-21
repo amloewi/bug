@@ -1,10 +1,10 @@
 import time
 import os
 import copy
-# Thought time was a problem, and thought only loading functions might be faster
-from threading import Timer
-from cgi import parse_qs
-from urllib2 import urlopen
+
+import threading
+import cgi
+import urllib2
 
 import web
 import model
@@ -66,17 +66,18 @@ def send_message(to, message):
 
 # Used to see if anything needs to be sent
 def sweep():
-    Timer(SWEEP_FREQUENCY, sweep).start()
+    threading.Timer(SWEEP_FREQUENCY, sweep).start()
     now = time.time()
     reminders = model.get_active()
     if reminders:
         # This will just ping the site IFF there are active reminders.
         # Keeps it awake for > 1hr.
         # This has caused trouble before, but I don't know why.
-        # IT'S DOING IT AGAIN
-        urlopen('http://sikeda.herokuapp.com')
-        pass
-        
+        try:
+          urllib2.urlopen('http://sikeda.herokuapp.com')
+        except Exception e:
+          print e
+
     for reminder in reminders:
         if now > reminder.send_at:
             send_message(reminder.sender_number, reminder.message)
@@ -124,7 +125,7 @@ def parse_message(test_request=None):
     raw_string = web.ctx.env['wsgi.input'].read()
     # Function's a little weird. Instead of returning str:str, it gives
     # str:[str], i.e. 'Body': ['Hello Bug']
-    request = parse_qs(raw_string)
+    request = cgi.parse_qs(raw_string)
 
   text = request['Body'][0]
   sender = request['From'][0]
