@@ -140,6 +140,7 @@ def parse_message(test_request=None):
 
     msg_args.insert(0, sender)
 
+    # [sender, did/cancel, job]
     return msg_args, flag
 
   else:
@@ -196,9 +197,9 @@ class receive_message:
         # Handles both "completed" and "cancel"?
         if msg_type=="did" or msg_type=="cancel":
 
-          sender, name = msg_args
+          sender, message, job = msg_args
 
-          to, job = model.inactivate_reminder(sender, name, msg_type)
+          to, job = model.inactivate_reminder(sender, job, msg_type)
 
           msg = "Your reminder \'"+job+"\' was stopped."
 

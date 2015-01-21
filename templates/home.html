@@ -38,47 +38,45 @@
       <h4> An insistent text message reminder service </h4>
 
       <div class="row">
-        <div class="col-md-7">
-          Alarms only go off once. When they do go off, you're busy, and an hour after the
-          alarm, the thing you needed to do still needs to be done, but you've forgotten about it
-          again. Especially if you're sorta avoiding it on purpose ... but you can't keep doing that!
+        <div class="col-md-6">
 
-          <p><p>
-          <b>bug</b> takes the more intuitive, and direct approach. It reminds you of something, repeatedly, until you do it.
+          <b>bug</b> reminds you of something, repeatedly, until you do it.
           Like a person would. Like you wish you could do for yourself. Because you know that's how things get done.
+          It's that simple.
 
           <p><p>
-          The interface is just as simple. Send a text to the bug number in the format:
-
-          <h3> message [ interval=30 [ repeats=5 ]] </h3>
-
-          <br>
-          Where <b>message</b> is the message you'll get when the reminder is sent.
-          And that's all you have to do. You'll get the message sent to you 5 times,
-          each 30 minutes apart, until you stop or cancel it.
-          If you want more reminders, or a different amount of time between them,
-          you can include numbers after your message to set those values.
-          The numbers need to be separated by spaces.
-          <p><p>
+          Using <b>bug</b> is just as simple. Here's what would happen if you sent it some texts.
 
           <h3> Examples </h3>
 
-          <b>Buy groceries for tomorrow! 60 3</b>
+          <b>Buy groceries for tomorrow!</b>
           <br>
-          This will send the message 3 times, 60 minutes apart.
+          If you sent <b>bug</b> this text, it would be sent back to you every 30 minutes, 5 times.
           <p><p>
 
           <b>Return the library book 20</b>
           <br>
-          This will send the message 5 times (because that's the "repeats" default), 20 minutes apart
+          If you sent this one, the messages would be 20 minutes apart, but there'd still be 5.
           <p><p>
 
-          <b>Go to the gym before dinner at 8.</b>
+          <b>Go to the gym before dinner 60 2</b>
           <br>
-          This will send the message 5 times (by default) 30 minutes apart
-           (by default). The one thing you have to be CAREFUL about is the '8' --
-           so that <b>bug</b> doesn't think it's a parameter you're setting, just
-           make sure there's a period (or anything else) ending the sentence.
+          You'd get this message 60 minutes apart, 2 times.
+          <p><p>
+
+          <b>Did beetle/ Cancel ant</b>
+          <br>
+          When you set a reminder, <b>bug</b> assigns it a name, like 'beetle', and sends you a
+          message to tell you what that name is. You can use that name
+          to stop the reminder, if you finish the thing you wanted to do (congratulations!) or
+          cancel it, if you made a mistake.
+          <p><p>
+
+          <br>
+          If you have a number at the end of your message like "Dinner at 8", just make sure it has a period
+          (or something) after it to make it clear it's not meant to be a parameter.<p>
+          <b>bug</b> will do the rest.
+
 
         </div>
         <div class="col-md-3 col-md-offset-1">
