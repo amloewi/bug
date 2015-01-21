@@ -73,8 +73,10 @@ def sweep():
         # This will just ping the site IFF there are active reminders.
         # Keeps it awake for > 1hr.
         # This has caused trouble before, but I don't know why.
+        # IT'S DOING IT AGAIN
         urlopen('http://sikeda.herokuapp.com')
-
+        pass
+        
     for reminder in reminders:
         if now > reminder.send_at:
             send_message(reminder.sender_number, reminder.message)
