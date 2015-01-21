@@ -74,7 +74,7 @@ def sweep():
         # Keeps it awake for > 1hr.
         # This has caused trouble before, but I don't know why.
         try:
-          urllib2.urlopen('http://sikeda.herokuapp.com')
+          urllib2.urlopen('http://sikeda.herokuapp.com', timeout=10)
         except Exception, e:
           print e
 
