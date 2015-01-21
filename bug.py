@@ -86,9 +86,9 @@ def sweep():
                 model.reinsert(reminder)
             else:
               model.inactivate_reminder(reminder.sender_number,
-                                        reminder.name,
+                                        reminder.name.strip(),
                                         "ran_out")
-              msg = "Your reminder \'"+reminder.name+"\' just ran out."
+              msg = "Your reminder \'"+reminder.name.strip()+"\' just ran out."
               send_message(reminder.sender_number, msg)
 
 ############################
