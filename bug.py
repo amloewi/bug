@@ -27,7 +27,7 @@ urls = (
 ####################
 
 # The twilio number that receives (and sends) the texts
-twilio_number = os.environ['TWILIO_NUMBER']#"+16507275900" # HIDE this somewhere?
+twilio_number = os.environ['TWILIO_NUMBER']
 # Default number of minutes in between reminders
 INTERVAL_DEFAULT = 30
 # Default number of times a message is repeated before inactivation
@@ -55,7 +55,7 @@ render = web.template.render('templates')
 def send_message(to, message):
 
     account_sid = "AC8554a81ca9d1b4658093bfc4a0dc23d1"
-    auth_token  = os.environ['TWILIO_AUTH_TOKEN'] #"0aea2768b7cb3dfe1d74c6a03e8a9dc7" #"{{ auth_token }}"
+    auth_token  = os.environ['TWILIO_AUTH_TOKEN']
     client = TwilioRestClient(account_sid, auth_token)
 
     message = client.messages.create(
@@ -73,8 +73,8 @@ def sweep():
         # This will just ping the site IFF there are active reminders.
         # Keeps it awake for > 1hr.
         # This has caused trouble before, but I don't know why.
-        #urlopen('http://sikeda.herokuapp.com')
-        pass
+        urlopen('http://sikeda.herokuapp.com')
+
     for reminder in reminders:
         if now > reminder.send_at:
             send_message(reminder.sender_number, reminder.message)

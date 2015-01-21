@@ -14,11 +14,9 @@ if os.path.abspath("") == '/Users/alexloewi/Documents/Sites/bug':
             pw='dian4nao3',
             db='alexloewi')
 else:
-  #Connection URL:
-  #    postgres://saacaqioxidlzo:uTBA7xiv_GqC99oNQCf4R5FzFo@ec2-54-83-23-169.compute-1.amazonaws.com:5432/dqskbvn58g0hu
   db = web.database(dbn='postgres',
                       user='saacaqioxidlzo',
-                      pw=os.environ['BUG_PG_PW'], #'uTBA7xiv_GqC99oNQCf4R5FzFo',
+                      pw=os.environ['BUG_PG_PW'],
                       host='ec2-54-83-23-169.compute-1.amazonaws.com',
                       port=5432,
                       db='dqskbvn58g0hu',
