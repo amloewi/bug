@@ -27,7 +27,7 @@ urls = (
 ####################
 
 # The twilio number that receives (and sends) the texts
-twilio_number = os.environ['TWILIO_NUMBER']"+16507275900" # HIDE this somewhere?
+twilio_number = os.environ['TWILIO_NUMBER']#"+16507275900" # HIDE this somewhere?
 # Default number of minutes in between reminders
 INTERVAL_DEFAULT = 30
 # Default number of times a message is repeated before inactivation
