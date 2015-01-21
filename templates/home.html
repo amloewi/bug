@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap -->
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,7 +41,7 @@
         <div class="col-md-7">
           Alarms only go off once. When they do go off, you're busy, and an hour after the
           alarm, the thing you needed to do still needs to be done, but you've forgotten about it
-          again. Especially if you're sorta avoiding it on purpose ... but you can't let me keep doing that!
+          again. Especially if you're sorta avoiding it on purpose ... but you can't keep doing that!
 
           <p><p>
           <b>bug</b> takes the more intuitive, and direct approach. It reminds you of something, repeatedly, until you do it.
@@ -50,37 +50,39 @@
           <p><p>
           The interface is just as simple. Send a text to the bug number in the format:
 
-          <h3> name, message [, interval=30 [, repeats=5 ]] </h3>
+          <h3> message [ interval=30 [ repeats=5 ]] </h3>
 
           <br>
-          Where <b>name</b> is the name of the reminder (which in the future, you'll be able to  use to
-          cancel the reminders once you've done the thing), <b>message</b> is the message you'll get
-          when the reminder is sent, <b>interval</b> is the number of minutes in between reminders (which
-          defaults to 30, if you don't enter anything), and <b>repeats</b> is the number of times the reminder will
-          be sent (which defaults to 5, if you don't enter anything).
+          Where <b>message</b> is the message you'll get when the reminder is sent.
+          And that's all you have to do. You'll get the message sent to you 5 times,
+          each 30 minutes apart, until you stop or cancel it.
+          If you want more reminders, or a different amount of time between them,
+          you can include numbers after your message to set those values.
+          The numbers need to be separated by spaces.
           <p><p>
 
           <h3> Examples </h3>
 
-          <b>Groceries, Buy groceries for tomorrow!, 60, 3</b>
+          <b>Buy groceries for tomorrow! 60 3</b>
           <br>
           This will send the message 3 times, 60 minutes apart.
           <p><p>
 
-          <b>Book, Return the library book, 20</b>
+          <b>Return the library book 20</b>
           <br>
           This will send the message 5 times (because that's the "repeats" default), 20 minutes apart
           <p><p>
 
-          <b>Gym, Go the gym before dinner at 8</b>
+          <b>Go to the gym before dinner at 8.</b>
           <br>
-          This will send the message 5 times (by default) 30 minutes apart (by default).
+          This will send the message 5 times (by default) 30 minutes apart
+           (by default). The one thing you have to be CAREFUL about is the '8' --
+           so that <b>bug</b> doesn't think it's a parameter you're setting, just
+           make sure there's a period (or anything else) ending the sentence.
 
         </div>
         <div class="col-md-3 col-md-offset-1">
           <b>bug</b> is in the middle of development, so things are going to change, and also not always work.
-          In particular, at the moment, it's finicky about input format, so be careful -- and don't put
-          commas in your message!
           But if you'd like to give it a try, email me at <b>aloewi</b> ☃ <b>cmu.edu</b>
           and I'll send you the number it uses. Oh, and call your mom.
           <p>
@@ -97,7 +99,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
   </body>
 
 </html>
