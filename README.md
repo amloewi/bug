@@ -5,12 +5,15 @@ An insistent SMS-based reminder service.
 
 The input string for bug is:
 
-**\<name of job\>, \<message\>, [, \<minutes between reminders\> [, \<times message will be sent\> ]]**
+** \<message\>, [, \<minutes between reminders=30\> [, \<times message will be sent=5\> ]]**
 
-With defaults on the last two, optional parameters being 30 minutes between reminders, and 5 repeated messages.
+Meaning the last two parameters are optional, and have defaults of 30 minutes between reminders, and 5 repeated messages. The parameters need to be separated by spaces, and if you have a number at the end of your message,
+you need to include punctuation to show it's not a parameter. E.g. **Dinner at 8** will think '8' is the interval, but **Dinner at 8.** with the period will work fine.
 
-**Ex:** *Food, Go buy food!, 30, 4* # The job named "Food" will send you the message "Go buy food! 4 times, 30 minutes apart.
+**Ex:** *Go buy food!, 60, 4* # You will get the message "Go buy food! 4 times, 60 minutes apart.
 
-**Ex:** *Call, Call Shelly* # The job named "Call" will send you the message "Call Shelly" 5 times, 30 minutes apart, because those are the defaults on the paramaters.
+**Ex:** *Call Shelly* # You will get the message "Call Shelly" 5 times, 30 minutes apart, because those are the defaults on the paramaters.
 
-The name of the job is meant as an identifier by which the job can be cancelled, with 'Did \<job\>' but that feature has not yet been implemented.
+When you make a reminder you will receive a text telling you what the name of your reminder is. You can use this to stop the messages when you finish the thing you wanted to do, or to cancel them if you made a mistake, with
+
+** Cancel/Did \<reminder name\> **
