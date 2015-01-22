@@ -20,6 +20,8 @@
     <!-- Bootstrap -->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
 
+    <link href="home.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,54 +34,87 @@
   <body>
 
     <div class="container">
-
-      <h1> bug </h1>
-
-      <h4> An insistent text message reminder service </h4>
-
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-md-offset-1">
 
-          <b>bug</b> reminds you of something, repeatedly, until you do it.
-          Like a person would. Like you wish you could do for yourself. Because you know that's how things get done.
-          It's that simple.
+          <div class="row" style="position:relative">
+            <div class="col-md-2" style="font-size:40px">
+              <b>bug</b>
+            </div>
+            <div class="col-md-10" style="font-size:15px; position:absolute; bottom:10; left:80">
+              <b>An insistent text message reminder service</b>
+            </div>
+          </div>
 
-          <p><p>
-          Using <b>bug</b> is just as simple. Here's what would happen if you sent it some texts.
+          bug reminds you of something, repeatedly, until you do it. Like a person would.
+          <p>Because that's how things get done.
 
           <h3> Examples </h3>
 
-          <b>Buy groceries for tomorrow!</b>
-          <br>
-          If you sent <b>bug</b> this text, it would be sent back to you every 30 minutes, 5 times.
-          <p><p>
+          <div style="background:lightgrey; padding:10px" class="img-rounded">
+          <div class="row">
+            <div class="col-md-6">
+              <b style="color:black; font-size:18px">Buy groceries for tomorrow!</b>
+            </div>
 
-          <b>Return the library book 20</b>
+            <div class="col-md-6">
+              If you sent <b>bug</b> this text, it would be sent back to you every 30 minutes, 5 times.
+              Those are the defaults.
+            </div>
+          </div>
           <br>
-          If you sent this one, the messages would be 20 minutes apart, but there'd still be 5.
-          <p><p>
+          <div class="row">
+            <div class="col-md-6">
+              <b style="color:black; font-size:18px">Gym closes at 6 today 60 3</b>
+            </div>
 
-          <b>Go to the gym before dinner 60 2</b>
+            <div class="col-md-6">
+              You'd get this message 60 minutes apart, 3 times, because you gave <b>bug</b>
+              instructions for both of those things.
+            </div>
+          </div>
           <br>
-          You'd get this message 60 minutes apart, 2 times.
-          <p><p>
+          <div class="row">
+            <div class="col-md-6">
+              <b style="color:black; font-size:18px">Dinner with Paul at 8. 45</b>
+            </div>
 
-          <b>Did beetle/ Cancel ant</b>
+            <div class="col-md-6">
+              Messages are 45 minutes apart, but there are still the default 5 of them.
+              The period keeps <b>bug</b> from thinking '8' is an instruction, but
+              you can use anything that's not a number.
+            </div>
+          </div>
+        </div>
+
           <br>
+
           When you set a reminder, <b>bug</b> assigns it a name, like 'beetle', and sends you a
           message to tell you what that name is. You can use that name
           to stop the reminder, if you finish the thing you wanted to do (congratulations!) or
-          cancel it, if you made a mistake.
-          <p><p>
+          cancel it, if you made a mistake.</b>
+          <p>
 
           <br>
-          If you have a number at the end of your message like "Dinner at 8", just make sure it has a period
-          (or something) after it to make it clear it's not meant to be a parameter.<p>
-          <b>bug</b> will do the rest.
+          <div class="img-rounded" style="background:lightgrey; padding:10px">
+          <div class="row">
+            <div class="col-md-6">
+              <b style="color:black; font-size:18px">Did beetle/ Cancel ant</b>
+            </div>
+
+            <div class="col-md-6">
+              This would stop jobs called 'beetle' and 'ant,' respectively.
+              'Did' keeps a record of the reminder, while 'Cancel' doesn't.
+            </div>
+          </div>
+        </div>
+          <br>
 
 
         </div>
-        <div class="col-md-3 col-md-offset-2">
+        <div class="col-md-3 col-md-offset-1">
+
+          <div style="margin-top:100px"></div>
 
           <p style="font-size:20px">
            <b>Try it!</b>
@@ -89,7 +124,7 @@
           But if you'd like to give it a try, send your messages to
           <p><p>
 
-          <p class="text-center" style="font-size:20px">
+          <p class="text-center" style="font-size:40px">
            <b>650.727.5900</b>
           </p>
 
