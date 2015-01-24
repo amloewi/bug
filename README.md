@@ -3,6 +3,8 @@ bug
 
 An insistent SMS-based reminder service.
 
+A better introduction to **bug** can be found at http://sikeda.herokuapp.com
+
 The input string for bug is:
 
 **\<message\> [ \<minutes between reminders=30\> [ \<times message will be sent=5\> ]]**
