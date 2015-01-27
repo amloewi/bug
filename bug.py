@@ -64,7 +64,8 @@ def send_message(to, message):
             to=to,
             from_=twilio_number)
     except Exception, e:
-        print e
+        print "The error:", e
+        print "to: ", to
 
 
 # Used to see if anything needs to be sent
