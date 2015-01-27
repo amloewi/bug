@@ -1,6 +1,7 @@
 import web
 import time
 import os
+import random
 
 JOB_NAMES = ["ant", "beetle", "cicada", "moth", "pillbug", "bee", "firefly",
             "cricket", "grasshopper"]
