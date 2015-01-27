@@ -56,12 +56,15 @@ def send_message(to, message):
 
     account_sid = "AC8554a81ca9d1b4658093bfc4a0dc23d1"
     auth_token  = os.environ['TWILIO_AUTH_TOKEN']
-    client = TwilioRestClient(account_sid, auth_token)
 
-    message = client.messages.create(
-        body=message,
-        to=to,
-        from_=twilio_number)
+    try:
+        client = TwilioRestClient(account_sid, auth_token)
+        message = client.messages.create(
+            body=message,
+            to=to,
+            from_=twilio_number)
+    except Exception, e:
+        print e
 
 
 # Used to see if anything needs to be sent

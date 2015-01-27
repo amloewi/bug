@@ -2,7 +2,8 @@ import web
 import time
 import os
 
-JOB_NAMES = ["ant", "beetle", "cicada"]#, "", "beetle"]
+JOB_NAMES = ["ant", "beetle", "cicada", "moth", "pillbug", "bee", "firefly",
+            "cricket", "grasshopper"]
 NUM_NAMES = len(JOB_NAMES)
 
 # Chooses the correct database connection based upon whether the db is local,
@@ -28,15 +29,24 @@ else:
 def new_reminder(sender, msg, interval, repeats):
     interval_in_seconds = interval*60
     now = int(time.time())
-    active = len(list(db.where('reminders', sender_number=sender)))
 
+    # NEW WAY: RANDOMLY assigns a name. More fun. More names.
+    # Just doesn't follow the expectable A(nt) B(eetle) C(icada) scheme.
+    active = [r.name for r in db.where('reminders', sender_number=sender)]
+    name = random.choice([n for n in JOB_NAMES if n not in active])
+
+    ##############
+    # OLD WAY -- boring, but expectable.
+    ##############
+    # active = len(list(db.where('reminders', sender_number=sender)))
     # This assigns job names from the list of names
-    # above. If the number of active jobs goes over 5,
+    # above. If the number of active jobs goes over len(JOB_NAMES),
     # it starts to append digits to the job string,
     # i.e. ant1, fly1, etc.
-    name = JOB_NAMES[active%NUM_NAMES]
-    if active/NUM_NAMES:
-      name += str(active/NUM_NAMES)
+
+    # name = JOB_NAMES[active%NUM_NAMES]
+    if len(active)/NUM_NAMES:
+      name += str(len(active)/NUM_NAMES)
 
     db.insert('reminders',
                 name=name,
