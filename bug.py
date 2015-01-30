@@ -76,7 +76,12 @@ def sweep():
     if reminders:
         # This will just ping the site IFF there are active reminders.
         # Keeps it awake for > 1hr.
-        # This has caused trouble before, but I don't know why.
+        # The exception handling and timeout argument are responses
+        # to what is BELIEVED to have been a race condition
+        # when rebooting the site WHILE an active job was in the database.
+        # When it was seen, immediately, the site pinged itself before
+        # it was ready for requests, then errored on timing out TO ITSELF.
+        # Not sure that was the problem but hasn't been an issue since.
         try:
           urllib2.urlopen('http://sikeda.herokuapp.com', timeout=10)
         except Exception, e:
